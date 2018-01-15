@@ -186,7 +186,7 @@ open class CameraManager: NSObject, AVCaptureFileOutputRecordingDelegate, UIGest
     //Properties to set focus and capture mode when tap to focus is used (_focusStart)
     open var focusMode: AVCaptureDevice.FocusMode = .continuousAutoFocus
     open var exposureMode: AVCaptureDevice.ExposureMode = .continuousAutoExposure
-
+    open var videoGravity: AVLayerVideoGravity = .resizeAspectFill
     // MARK: - Private properties
 
     fileprivate var locationManager: CameraLocationManager?
@@ -997,7 +997,7 @@ open class CameraManager: NSObject, AVCaptureFileOutputRecordingDelegate, UIGest
     fileprivate func _setupPreviewLayer() {
         if let validCaptureSession = captureSession {
             previewLayer = AVCaptureVideoPreviewLayer(session: validCaptureSession)
-            previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspect
+            previewLayer?.videoGravity = videoGravity
         }
     }
 
@@ -1306,4 +1306,3 @@ fileprivate extension AVCaptureDevice {
         return AVCaptureDevice.devices(for: AVMediaType.video)
     }
 }
-

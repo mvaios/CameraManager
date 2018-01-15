@@ -798,6 +798,8 @@ open class CameraManager: NSObject, AVCaptureFileOutputRecordingDelegate, UIGest
     }
 
     @objc fileprivate func _orientationChanged() {
+        let orientation = UIDevice.current.orientation
+        guard orientation == .landscapeLeft || orientation == .landscapeRight || orientation == .portrait else { return }
         var currentConnection: AVCaptureConnection?
         switch cameraOutputMode {
         case .stillImage:
